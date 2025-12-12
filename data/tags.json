@@ -1,0 +1,32 @@
+[
+  {
+    "id": "tag-001",
+    "name": "engineering",
+    "color": "#3B82F6",
+    "description": "Engineering and development topics"
+  },
+  {
+    "id": "tag-002",
+    "name": "architecture",
+    "color": "#8B5CF6",
+    "description": "System architecture and design"
+  },
+  {
+    "id": "tag-003",
+    "name": "security",
+    "color": "#EF4444",
+    "description": "Security-related content"
+  },
+  {
+    "id": "tag-004",
+    "name": "retrospective",
+    "color": "#10B981",
+    "description": "Sprint retrospectives and reviews"
+  },
+  {
+    "id": "tag-005",
+    "name": "product",
+    "color": "#F59E0B",
+    "description": "Product planning and features"
+  }
+]

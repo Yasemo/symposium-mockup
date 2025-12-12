@@ -1,0 +1,128 @@
+/* 
+ * Symposium Design System
+ * Inspired by Dieter Rams' principles:
+ * - Less, but better
+ * - Good design is as little design as possible
+ * - Back to purity, back to simplicity
+ */
+
+:root {
+  /* 
+   * Color Palette
+   * Minimal, functional, honest
+   */
+  
+  /* Primary - Near black, the foundation */
+  --color-ink: #1a1a1a;
+  --color-ink-light: #404040;
+  --color-ink-lighter: #666666;
+  
+  /* Background - Clean whites and warm grays */
+  --color-paper: #ffffff;
+  --color-paper-warm: #fafafa;
+  --color-paper-cool: #f5f5f5;
+  
+  /* Functional accents - Purposeful, not decorative */
+  --color-accent: #1a1a1a;
+  --color-accent-subtle: #e5e5e5;
+  
+  /* Semantic - Clear communication */
+  --color-target: #2563eb;      /* Blue for @/ targeting */
+  --color-target-bg: #eff6ff;
+  --color-operation: #059669;   /* Green for #/ operations */
+  --color-operation-bg: #ecfdf5;
+  --color-error: #dc2626;
+  --color-error-bg: #fef2f2;
+  
+  /* Scheduler component colors - Functional differentiation */
+  --color-query: #8b5cf6;       /* Purple for queries/aggregation */
+  --color-query-bg: #f5f3ff;
+  --color-agent: #3b82f6;       /* Blue for agents/processing */
+  --color-agent-bg: #eff6ff;
+  --color-output: #ec4899;      /* Pink for outputs/sending */
+  --color-output-bg: #fdf2f8;
+  --color-cleanup: #f59e0b;     /* Amber for cleanups/maintenance */
+  --color-cleanup-bg: #fffbeb;
+  
+  /* 
+   * Typography
+   * System fonts for authenticity and performance
+   */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  
+  /* Type Scale - Mathematical harmony */
+  --text-xs: 0.75rem;     /* 12px */
+  --text-sm: 0.875rem;    /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg: 1.125rem;    /* 18px */
+  --text-xl: 1.25rem;     /* 20px */
+  --text-2xl: 1.5rem;     /* 24px */
+  
+  /* Line Heights */
+  --leading-tight: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+  
+  /* Font Weights */
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  
+  /* 
+   * Spacing
+   * Based on 4px grid for precision
+   */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  
+  /* 
+   * Borders
+   * Subtle, purposeful
+   */
+  --border-width: 1px;
+  --border-color: #e5e5e5;
+  --border-color-strong: #d4d4d4;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  
+  /* 
+   * Shadows
+   * Minimal depth indication
+   */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.08);
+  
+  /* 
+   * Transitions
+   * Quick, unobtrusive
+   */
+  --transition-fast: 100ms ease;
+  --transition-base: 150ms ease;
+  --transition-slow: 250ms ease;
+  
+  /* 
+   * Z-Index Scale
+   */
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-modal-overlay: 200;
+  --z-modal: 300;
+  --z-tooltip: 400;
+}
+
+/* Dark mode preparation (future) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Can be extended for dark mode support */
+  }
+}

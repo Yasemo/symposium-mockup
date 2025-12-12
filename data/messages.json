@@ -1,0 +1,30 @@
+[
+  {
+    "id": "msg-001",
+    "convo_id": "convo-001",
+    "role": "user",
+    "content": "What are the key considerations for designing our authentication system?",
+    "timestamp": "2025-12-11T14:00:00Z"
+  },
+  {
+    "id": "msg-002",
+    "convo_id": "convo-001",
+    "role": "assistant",
+    "content": "Based on the context you've provided, here are the key considerations for your authentication system:\n\n## Security Fundamentals\n\n1. **Token Management**\n   - Use short-lived access tokens (15 minutes)\n   - Implement refresh token rotation\n   - Store tokens securely (httpOnly cookies)\n\n2. **Rate Limiting**\n   - Implement progressive delays on failed attempts\n   - Use CAPTCHA after threshold\n   - Consider IP-based and account-based limits\n\n3. **Session Security**\n   - Implement proper session invalidation\n   - Support concurrent session management\n   - Add device fingerprinting\n\n## Architecture Recommendations\n\n- Separate auth service from main API\n- Use Redis for session storage\n- Implement audit logging from day one",
+    "timestamp": "2025-12-11T14:01:00Z"
+  },
+  {
+    "id": "msg-003",
+    "convo_id": "convo-001",
+    "role": "user",
+    "content": "How should we handle OAuth integration with third-party providers?",
+    "timestamp": "2025-12-11T14:15:00Z"
+  },
+  {
+    "id": "msg-004",
+    "convo_id": "convo-001",
+    "role": "assistant",
+    "content": "For OAuth integration, I recommend the following approach:\n\n## Provider Strategy\n\nStart with the most common providers:\n- Google (highest adoption)\n- GitHub (developer audience)\n- Microsoft (enterprise)\n\n## Implementation Pattern\n\n```\nUser clicks \"Sign in with Google\"\n    ↓\nRedirect to provider's auth page\n    ↓\nProvider redirects back with code\n    ↓\nExchange code for tokens (server-side)\n    ↓\nCreate/link local user account\n    ↓\nIssue your own JWT tokens\n```\n\n## Key Considerations\n\n1. **Account Linking** - Allow users to link multiple providers\n2. **Email Verification** - Trust provider's verified emails\n3. **Scope Management** - Request minimal permissions\n4. **Token Storage** - Never expose provider tokens to client",
+    "timestamp": "2025-12-11T14:16:00Z"
+  }
+]

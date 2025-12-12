@@ -1,0 +1,38 @@
+[
+  {
+    "id": "col-001",
+    "name": "Engineering Context",
+    "description": "All engineering-related cards for API project",
+    "filter": {
+      "tag_ids": ["tag-001"],
+      "schema_ids": null,
+      "date_range": null
+    },
+    "card_count": 3
+  },
+  {
+    "id": "col-002",
+    "name": "Security Research",
+    "description": "Security and authentication research",
+    "filter": {
+      "tag_ids": ["tag-003"],
+      "schema_ids": null,
+      "date_range": null
+    },
+    "card_count": 1
+  },
+  {
+    "id": "col-003",
+    "name": "Meeting Notes Q4",
+    "description": "All meeting notes from Q4 2025",
+    "filter": {
+      "tag_ids": null,
+      "schema_ids": ["schema-001"],
+      "date_range": {
+        "from": "2025-10-01",
+        "to": "2025-12-31"
+      }
+    },
+    "card_count": 2
+  }
+]

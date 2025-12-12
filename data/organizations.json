@@ -1,0 +1,94 @@
+[
+  {
+    "id": "org-001",
+    "name": "ACME Corp",
+    "url": "https://acme-corp.symposium.cloud",
+    "description": "Company organization workspace",
+    "status": "connected",
+    "api_key": "ws_sk_***hidden***",
+    "user_email": "alice@acme.com",
+    "available_think_tanks": [
+      {
+        "id": "tt-engineering",
+        "name": "Engineering",
+        "role": "publisher",
+        "member_count": 24,
+        "status": "member"
+      },
+      {
+        "id": "tt-product",
+        "name": "Product",
+        "role": "subscriber",
+        "member_count": 12,
+        "status": "member"
+      },
+      {
+        "id": "tt-marketing",
+        "name": "Marketing",
+        "role": null,
+        "member_count": 8,
+        "status": "available"
+      },
+      {
+        "id": "tt-all-hands",
+        "name": "All Hands",
+        "role": "subscriber",
+        "member_count": 45,
+        "status": "member"
+      }
+    ],
+    "published_collections": [
+      {
+        "id": "pub-001",
+        "local_collection_id": "col-001",
+        "collection_name": "Q4 Research",
+        "think_tank_id": "tt-engineering",
+        "sync_mode": "auto",
+        "published_at": "2025-11-15T10:00:00Z"
+      }
+    ],
+    "connected_at": "2025-11-01T09:00:00Z",
+    "last_verified": "2025-12-11T20:00:00Z"
+  },
+  {
+    "id": "org-002",
+    "name": "Research Institute",
+    "url": "https://research-inst.symposium.cloud",
+    "description": "Academic research collaboration",
+    "status": "connected",
+    "api_key": "ws_sk_***hidden***",
+    "user_email": "alice@research.edu",
+    "available_think_tanks": [
+      {
+        "id": "tt-ai-research",
+        "name": "AI Research",
+        "role": "subscriber",
+        "member_count": 35,
+        "status": "member"
+      },
+      {
+        "id": "tt-data-science",
+        "name": "Data Science",
+        "role": null,
+        "member_count": 28,
+        "status": "available"
+      }
+    ],
+    "published_collections": [],
+    "connected_at": "2025-12-01T14:00:00Z",
+    "last_verified": "2025-12-11T18:00:00Z"
+  },
+  {
+    "id": "org-003",
+    "name": "Open Community",
+    "url": "https://community.symposium.cloud",
+    "description": "Public knowledge sharing",
+    "status": "pending",
+    "api_key": null,
+    "user_email": null,
+    "available_think_tanks": [],
+    "published_collections": [],
+    "connected_at": null,
+    "last_verified": null
+  }
+]

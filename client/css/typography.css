@@ -1,0 +1,100 @@
+/* 
+ * Typography
+ * Clear hierarchy, functional beauty
+ */
+
+/* Headings */
+h1 {
+  font-size: var(--text-2xl);
+  letter-spacing: -0.025em;
+}
+
+h2 {
+  font-size: var(--text-xl);
+  letter-spacing: -0.02em;
+}
+
+h3 {
+  font-size: var(--text-lg);
+  letter-spacing: -0.015em;
+}
+
+/* Body text */
+p {
+  margin-bottom: var(--space-4);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* Code */
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--color-paper-cool);
+  padding: 0.125em 0.375em;
+  border-radius: var(--radius-sm);
+}
+
+pre {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  background: var(--color-paper-cool);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  margin: var(--space-4) 0;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+/* Lists in content */
+.content ul,
+.content ol {
+  margin: var(--space-4) 0;
+  padding-left: var(--space-6);
+}
+
+.content ul {
+  list-style: disc;
+}
+
+.content ol {
+  list-style: decimal;
+}
+
+.content li {
+  margin-bottom: var(--space-2);
+}
+
+/* Strong & emphasis */
+strong {
+  font-weight: var(--weight-semibold);
+}
+
+em {
+  font-style: italic;
+}
+
+/* Small text */
+small, .text-sm {
+  font-size: var(--text-sm);
+}
+
+.text-xs {
+  font-size: var(--text-xs);
+}
+
+/* Muted text */
+.text-muted {
+  color: var(--color-ink-lighter);
+}
+
+/* Monospace */
+.font-mono {
+  font-family: var(--font-mono);
+}

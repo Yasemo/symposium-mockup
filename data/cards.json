@@ -1,0 +1,58 @@
+[
+  {
+    "id": "card-001",
+    "title": "Auth System Requirements",
+    "schema_id": "schema-001",
+    "tag_ids": ["tag-001", "tag-003"],
+    "context": "The authentication system should use JWT tokens with a 15-minute expiration for access tokens and 7-day refresh tokens. We need to implement:\n\n1. OAuth 2.0 flow for third-party providers\n2. Rate limiting on login attempts\n3. Session management with Redis\n4. Audit logging for security events",
+    "schema_data": {
+      "date": "2025-12-10",
+      "attendees": ["Alice", "Bob", "Charlie"],
+      "action_items": ["Research OAuth providers", "Set up Redis cluster", "Design audit schema"]
+    },
+    "type": "official",
+    "created_at": "2025-12-10T10:00:00Z"
+  },
+  {
+    "id": "card-002",
+    "title": "API Rate Limiting Strategy",
+    "schema_id": "schema-002",
+    "tag_ids": ["tag-001", "tag-002"],
+    "context": "Implement tiered rate limiting based on user subscription level:\n\n- Free: 100 requests/hour\n- Pro: 1000 requests/hour\n- Enterprise: 10000 requests/hour\n\nUse sliding window algorithm with Redis for distributed rate limiting.",
+    "schema_data": {
+      "category": "Backend",
+      "priority": "High",
+      "status": "In Progress"
+    },
+    "type": "official",
+    "created_at": "2025-12-09T14:00:00Z"
+  },
+  {
+    "id": "card-003",
+    "title": "Database Schema v2 Ideas",
+    "schema_id": "schema-002",
+    "tag_ids": ["tag-002"],
+    "context": "Considering moving to a more normalized schema for better query performance. Key changes:\n\n- Separate user preferences into its own table\n- Add composite indexes for common query patterns\n- Implement soft deletes across all tables",
+    "schema_data": {
+      "category": "Database",
+      "priority": "Medium",
+      "status": "Draft"
+    },
+    "type": "draft",
+    "created_at": "2025-12-11T09:00:00Z"
+  },
+  {
+    "id": "card-004",
+    "title": "Sprint Retrospective - Week 49",
+    "schema_id": "schema-001",
+    "tag_ids": ["tag-001", "tag-004"],
+    "context": "What went well:\n- Completed auth MVP ahead of schedule\n- Good collaboration between frontend and backend\n\nWhat could improve:\n- Need better async communication\n- Testing coverage still below target\n\nAction items for next sprint:\n- Implement integration tests\n- Set up daily standups",
+    "schema_data": {
+      "date": "2025-12-06",
+      "attendees": ["Alice", "Bob", "Charlie", "Diana"],
+      "action_items": ["Add integration tests", "Schedule daily standups"]
+    },
+    "type": "official",
+    "created_at": "2025-12-06T17:00:00Z"
+  }
+]

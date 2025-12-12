@@ -1,0 +1,217 @@
+/* 
+ * Input Area
+ * The command center - clean and functional
+ */
+
+/* Input Controls Row */
+.input-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-3);
+}
+
+/* Mode Toggle */
+.mode-toggle {
+  display: flex;
+  gap: var(--space-1);
+  background: var(--color-paper-cool);
+  padding: var(--space-1);
+  border-radius: var(--radius-md);
+}
+
+.mode-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  color: var(--color-ink-lighter);
+  transition: all var(--transition-fast);
+}
+
+.mode-btn:hover {
+  color: var(--color-ink);
+}
+
+.mode-btn.active {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Input Actions */
+.input-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.model-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  background: var(--color-paper-cool);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  transition: background var(--transition-fast);
+}
+
+.model-btn:hover {
+  background: var(--color-accent-subtle);
+}
+
+.model-btn.high-mode {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.model-btn.high-mode:hover {
+  background: var(--color-ink-light);
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  color: var(--color-ink-lighter);
+  transition: all var(--transition-fast);
+}
+
+.icon-btn:hover {
+  background: var(--color-paper-cool);
+  color: var(--color-ink);
+}
+
+/* Input Wrapper */
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  background: var(--color-paper-cool);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  transition: box-shadow var(--transition-fast);
+}
+
+.input-wrapper:focus-within {
+  box-shadow: 0 0 0 2px var(--color-ink);
+}
+
+/* Input Highlight Layer (for syntax highlighting) */
+.input-highlight {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  right: calc(var(--space-3) + 44px); /* Account for send button */
+  pointer-events: none;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  color: transparent;
+}
+
+/* Highlight spans */
+.input-highlight .target {
+  color: var(--color-target);
+  background: var(--color-target-bg);
+  border-radius: 2px;
+  padding: 0 2px;
+  margin: 0 -2px;
+}
+
+.input-highlight .operation {
+  color: var(--color-operation);
+  background: var(--color-operation-bg);
+  border-radius: 2px;
+  padding: 0 2px;
+  margin: 0 -2px;
+}
+
+/* Textarea */
+#input-field {
+  flex: 1;
+  min-height: 24px;
+  max-height: 200px;
+  background: transparent;
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  resize: none;
+  caret-color: var(--color-ink);
+}
+
+#input-field::placeholder {
+  color: var(--color-ink-lighter);
+}
+
+/* Send Button */
+.send-btn {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-fast);
+}
+
+.send-btn:disabled {
+  background: var(--color-accent-subtle);
+  color: var(--color-ink-lighter);
+  cursor: not-allowed;
+}
+
+.send-btn:not(:disabled):hover {
+  background: var(--color-ink-light);
+}
+
+/* Manage Mode Error */
+.manage-error {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-error-bg);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  color: var(--color-error);
+}
+
+.error-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background: var(--color-error);
+  color: var(--color-paper);
+  border-radius: 50%;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+}
+
+/* Desktop adjustments */
+@media (min-width: 768px) {
+  .input-wrapper {
+    padding: var(--space-4);
+  }
+  
+  .input-highlight {
+    top: var(--space-4);
+    left: var(--space-4);
+    right: calc(var(--space-4) + 48px);
+  }
+}

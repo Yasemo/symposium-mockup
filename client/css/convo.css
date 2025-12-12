@@ -1,0 +1,232 @@
+/* 
+ * Conversation View
+ * Clean message thread display
+ */
+
+/* Convo Header */
+.convo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: var(--border-width) solid var(--border-color);
+  background: var(--color-paper);
+  flex-shrink: 0;
+}
+
+/* Breadcrumb Navigation */
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  overflow: hidden;
+}
+
+.breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+  color: var(--color-ink-light);
+  white-space: nowrap;
+  transition: all var(--transition-fast);
+}
+
+.breadcrumb-item:hover {
+  background: var(--color-paper-cool);
+  color: var(--color-ink);
+}
+
+.breadcrumb-separator {
+  color: var(--color-ink-lighter);
+  font-size: var(--text-sm);
+}
+
+/* Active Context Button */
+#active-context-btn {
+  position: relative;
+}
+
+.context-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  background: var(--color-ink);
+  color: var(--color-paper);
+  font-size: 10px;
+  font-weight: var(--weight-semibold);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Messages Container */
+.messages-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+/* Message Node */
+.message-node {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+/* Message Header */
+.message-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.message-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--color-paper-cool);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-sm);
+}
+
+.message-node.assistant .message-avatar {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.message-role {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  color: var(--color-ink);
+}
+
+.message-time {
+  font-size: var(--text-xs);
+  color: var(--color-ink-lighter);
+  margin-left: auto;
+}
+
+/* Message Content */
+.message-content {
+  padding-left: 36px; /* Align with avatar */
+}
+
+.message-content p {
+  margin-bottom: var(--space-3);
+}
+
+.message-content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Message content headings */
+.message-content h2 {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  margin-top: var(--space-4);
+  margin-bottom: var(--space-2);
+  color: var(--color-ink);
+}
+
+.message-content h2:first-child {
+  margin-top: 0;
+}
+
+/* Message content lists */
+.message-content ul,
+.message-content ol {
+  margin: var(--space-2) 0;
+  padding-left: var(--space-5);
+}
+
+.message-content ul {
+  list-style: disc;
+}
+
+.message-content ol {
+  list-style: decimal;
+}
+
+.message-content li {
+  margin-bottom: var(--space-1);
+}
+
+/* Message content code */
+.message-content code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background: var(--color-paper-cool);
+  padding: 0.125em 0.375em;
+  border-radius: var(--radius-sm);
+}
+
+.message-content pre {
+  margin: var(--space-3) 0;
+  padding: var(--space-3);
+  background: var(--color-paper-cool);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+}
+
+.message-content pre code {
+  background: none;
+  padding: 0;
+  font-size: var(--text-sm);
+}
+
+/* Message Actions */
+.message-actions {
+  display: flex;
+  gap: var(--space-2);
+  padding-left: 36px;
+  margin-top: var(--space-2);
+}
+
+.message-action-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-paper-cool);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-xs);
+  color: var(--color-ink-light);
+  transition: all var(--transition-fast);
+}
+
+.message-action-btn:hover {
+  background: var(--color-accent-subtle);
+  color: var(--color-ink);
+}
+
+/* Desktop adjustments */
+@media (min-width: 768px) {
+  .convo-header {
+    padding: var(--space-4) var(--space-6);
+  }
+  
+  .messages-container {
+    padding: var(--space-6);
+    gap: var(--space-8);
+  }
+  
+  .message-content {
+    padding-left: 40px;
+  }
+  
+  .message-actions {
+    padding-left: 40px;
+  }
+}

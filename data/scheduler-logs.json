@@ -1,0 +1,90 @@
+[
+  {
+    "id": "log-001",
+    "timestamp": "2025-12-11T22:00:00Z",
+    "type": "source",
+    "resource_id": "source-001",
+    "resource_name": "Client Emails",
+    "status": "success",
+    "message": "Fetched 3 emails, created 3 cards",
+    "duration_ms": 2456,
+    "details": {
+      "fetched": 3,
+      "created": 3,
+      "errors": 0
+    }
+  },
+  {
+    "id": "log-002",
+    "timestamp": "2025-12-11T21:45:00Z",
+    "type": "source",
+    "resource_id": "source-002",
+    "resource_name": "Team Slack Updates",
+    "status": "success",
+    "message": "Processed 1 webhook, created 1 card",
+    "duration_ms": 823,
+    "details": {
+      "received": 1,
+      "created": 1,
+      "errors": 0
+    }
+  },
+  {
+    "id": "log-003",
+    "timestamp": "2025-12-11T03:00:00Z",
+    "type": "cleanup",
+    "resource_id": "cleanup-002",
+    "resource_name": "Delete Failed Imports",
+    "status": "success",
+    "message": "Deleted 2 cards matching criteria",
+    "duration_ms": 145,
+    "details": {
+      "evaluated": 150,
+      "deleted": 2
+    }
+  },
+  {
+    "id": "log-004",
+    "timestamp": "2025-12-09T09:06:00Z",
+    "type": "output",
+    "resource_id": "output-002",
+    "resource_name": "Slack Research Alerts",
+    "status": "success",
+    "message": "Posted 8 insights to Slack",
+    "duration_ms": 1234,
+    "details": {
+      "cards": 8,
+      "sent": 8,
+      "failed": 0
+    }
+  },
+  {
+    "id": "log-005",
+    "timestamp": "2025-12-09T09:05:00Z",
+    "type": "query",
+    "resource_id": "query-002",
+    "resource_name": "Research Paper Insights",
+    "status": "success",
+    "message": "Processed 8 papers, created 8 insight cards",
+    "duration_ms": 15678,
+    "details": {
+      "input_cards": 8,
+      "created": 8,
+      "llm_tokens": 12450
+    }
+  },
+  {
+    "id": "log-006",
+    "timestamp": "2025-12-08T10:30:00Z",
+    "type": "source",
+    "resource_id": "source-003",
+    "resource_name": "Weekly Research Papers",
+    "status": "error",
+    "message": "API rate limit exceeded",
+    "duration_ms": 234,
+    "details": {
+      "error": "Rate limit: 429",
+      "retry_after": 3600
+    }
+  }
+]

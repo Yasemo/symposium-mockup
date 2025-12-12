@@ -1,0 +1,55 @@
+[
+  {
+    "id": "query-001",
+    "name": "Weekly Client Summary",
+    "description": "Aggregates client emails into weekly summary",
+    "type": "llm_aggregation",
+    "status": "active",
+    "source_ids": ["source-001", "source-002"],
+    "config": {
+      "model": "gpt-4",
+      "prompt": "Summarize the following client communications into key points",
+      "temperature": 0.5
+    },
+    "output": {
+      "schema_id": "schema-001",
+      "tag_ids": ["tag-002"],
+      "title_template": "Client Summary - Week of {{week_start}}"
+    },
+    "schedule": {
+      "type": "cron",
+      "cron": "0 17 * * 5",
+      "timezone": "America/Toronto"
+    },
+    "last_execution": "2025-12-06T17:00:00Z",
+    "last_result_count": 1,
+    "total_cards_created": 8,
+    "created_at": "2025-11-01T10:00:00Z"
+  },
+  {
+    "id": "query-002",
+    "name": "Research Paper Insights",
+    "description": "Extract key insights from research papers",
+    "type": "llm_transformation",
+    "status": "active",
+    "source_ids": ["source-003"],
+    "config": {
+      "model": "gpt-4",
+      "prompt": "Extract methodology, results, and implications",
+      "temperature": 0.3
+    },
+    "output": {
+      "schema_id": "schema-003",
+      "tag_ids": ["tag-001"],
+      "title_template": "Insights: {{original_title}}"
+    },
+    "schedule": {
+      "type": "on_source_completion",
+      "source_id": "source-003"
+    },
+    "last_execution": "2025-12-09T09:05:00Z",
+    "last_result_count": 8,
+    "total_cards_created": 42,
+    "created_at": "2025-10-15T12:30:00Z"
+  }
+]

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "sub-001",
+    "name": "Engineering Knowledge Base",
+    "description": "Core engineering documentation and best practices",
+    "org_connection_id": "org-001",
+    "org_name": "ACME Corp",
+    "think_tank_id": "tt-engineering",
+    "think_tank_name": "Engineering",
+    "collection_id": "col-org-kb",
+    "sync_mode": "auto",
+    "status": "synced",
+    "card_count": 42,
+    "last_synced_at": "2025-12-11T22:00:00Z",
+    "created_at": "2025-11-15T10:00:00Z"
+  },
+  {
+    "id": "sub-002",
+    "name": "Product Roadmap",
+    "description": "Product planning and feature specifications",
+    "org_connection_id": "org-001",
+    "org_name": "ACME Corp",
+    "think_tank_id": "tt-product",
+    "think_tank_name": "Product",
+    "collection_id": "col-org-roadmap",
+    "sync_mode": "manual",
+    "status": "synced",
+    "card_count": 18,
+    "last_synced_at": "2025-12-10T15:00:00Z",
+    "created_at": "2025-11-20T14:00:00Z"
+  },
+  {
+    "id": "sub-003",
+    "name": "Research Papers",
+    "description": "Curated collection of relevant research",
+    "org_connection_id": "org-002",
+    "org_name": "Research Institute",
+    "think_tank_id": "tt-ai-research",
+    "think_tank_name": "AI Research",
+    "collection_id": "col-org-papers",
+    "sync_mode": "auto",
+    "status": "pending",
+    "card_count": 0,
+    "last_synced_at": null,
+    "created_at": "2025-12-09T16:00:00Z"
+  }
+]

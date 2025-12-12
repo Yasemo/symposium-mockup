@@ -1,0 +1,32 @@
+[
+  {
+    "id": "schema-001",
+    "name": "Meeting Notes",
+    "description": "Structured notes from meetings and discussions",
+    "fields": [
+      { "name": "date", "type": "date", "required": true },
+      { "name": "attendees", "type": "array", "required": false },
+      { "name": "action_items", "type": "array", "required": false }
+    ]
+  },
+  {
+    "id": "schema-002",
+    "name": "Research Notes",
+    "description": "Technical research and exploration notes",
+    "fields": [
+      { "name": "category", "type": "text", "required": true },
+      { "name": "priority", "type": "select", "required": false, "options": ["Low", "Medium", "High"] },
+      { "name": "status", "type": "select", "required": false, "options": ["Draft", "In Progress", "Complete"] }
+    ]
+  },
+  {
+    "id": "schema-003",
+    "name": "Task",
+    "description": "Actionable task or to-do item",
+    "fields": [
+      { "name": "due_date", "type": "date", "required": false },
+      { "name": "assignee", "type": "text", "required": false },
+      { "name": "status", "type": "select", "required": true, "options": ["Todo", "In Progress", "Done"] }
+    ]
+  }
+]

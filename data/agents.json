@@ -1,0 +1,147 @@
+[
+  {
+    "id": "agent-001",
+    "name": "Research Assistant",
+    "description": "Multi-tier agent for analyzing research papers",
+    "icon": "🤖",
+    "color": "#6366f1",
+    "status": "active",
+    "config": {
+      "nodes": [
+        {
+          "key": "router",
+          "tier": 0,
+          "name": "Router",
+          "objective": "Analyze the paper and route to appropriate analyzers",
+          "model_id": "gpt-4",
+          "temperature": 0.3,
+          "is_router": true
+        },
+        {
+          "key": "1a",
+          "tier": 1,
+          "name": "Methodology Analyzer",
+          "objective": "Extract and evaluate the methodology",
+          "model_id": "gpt-4",
+          "temperature": 0.5
+        },
+        {
+          "key": "1b",
+          "tier": 1,
+          "name": "Results Analyzer",
+          "objective": "Analyze experimental results",
+          "model_id": "gpt-4",
+          "temperature": 0.5
+        },
+        {
+          "key": "final",
+          "tier": 2,
+          "name": "Synthesizer",
+          "objective": "Combine all analyses into final report",
+          "model_id": "gpt-4",
+          "temperature": 0.7,
+          "is_final": true
+        }
+      ],
+      "edges": [
+        { "from": "router", "to": "1a" },
+        { "from": "router", "to": "1b" },
+        { "from": "1a", "to": "final" },
+        { "from": "1b", "to": "final" }
+      ]
+    },
+    "total_executions": 42,
+    "avg_cost": 0.15,
+    "created_at": "2025-12-01T10:00:00Z"
+  },
+  {
+    "id": "agent-002",
+    "name": "Meeting Summarizer",
+    "description": "Generates structured summaries from meeting notes",
+    "icon": "📝",
+    "color": "#8b5cf6",
+    "status": "active",
+    "config": {
+      "nodes": [
+        {
+          "key": "summarizer",
+          "tier": 0,
+          "name": "Summarizer",
+          "objective": "Extract key points, action items, and decisions",
+          "model_id": "gpt-4o-mini",
+          "temperature": 0.3,
+          "is_final": true
+        }
+      ],
+      "edges": []
+    },
+    "total_executions": 156,
+    "avg_cost": 0.05,
+    "created_at": "2025-11-15T14:30:00Z"
+  },
+  {
+    "id": "agent-003",
+    "name": "Code Reviewer",
+    "description": "Reviews code for best practices and potential issues",
+    "icon": "💻",
+    "color": "#ec4899",
+    "status": "draft",
+    "config": {
+      "nodes": [
+        {
+          "key": "router",
+          "tier": 0,
+          "name": "Router",
+          "objective": "Identify code type and route appropriately",
+          "model_id": "gpt-4",
+          "temperature": 0.2,
+          "is_router": true
+        },
+        {
+          "key": "1a",
+          "tier": 1,
+          "name": "Security Reviewer",
+          "objective": "Check for security vulnerabilities",
+          "model_id": "gpt-4",
+          "temperature": 0.3
+        },
+        {
+          "key": "1b",
+          "tier": 1,
+          "name": "Performance Reviewer",
+          "objective": "Identify performance issues",
+          "model_id": "gpt-4",
+          "temperature": 0.3
+        },
+        {
+          "key": "1c",
+          "tier": 1,
+          "name": "Style Reviewer",
+          "objective": "Check code style and best practices",
+          "model_id": "gpt-4o-mini",
+          "temperature": 0.3
+        },
+        {
+          "key": "final",
+          "tier": 2,
+          "name": "Report Generator",
+          "objective": "Compile all reviews into actionable report",
+          "model_id": "gpt-4",
+          "temperature": 0.5,
+          "is_final": true
+        }
+      ],
+      "edges": [
+        { "from": "router", "to": "1a" },
+        { "from": "router", "to": "1b" },
+        { "from": "router", "to": "1c" },
+        { "from": "1a", "to": "final" },
+        { "from": "1b", "to": "final" },
+        { "from": "1c", "to": "final" }
+      ]
+    },
+    "total_executions": 0,
+    "avg_cost": 0,
+    "created_at": "2025-12-09T16:00:00Z"
+  }
+]

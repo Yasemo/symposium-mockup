@@ -3,6 +3,9 @@
  * Main application logic with two-tier tab navigation
  */
 
+// Import canvas module
+import { CanvasView, renderBranchNavigation } from './canvas.js';
+
 // =============================================================================
 // STATE
 // =============================================================================
@@ -10,6 +13,12 @@
 const state = {
   mode: 'convo', // 'convo' or 'manage'
   modelMode: 'standard', // 'standard' or 'high'
+  
+  // Canvas/Linear view mode
+  viewMode: 'linear', // 'linear' or 'canvas'
+  currentBranchId: null,
+  branches: [],
+  nodes: [],
   
   // Two-tier navigation
   mainTab: 'library', // library, collections, agents, scheduler, integrations, subscriptions, organizations
@@ -39,6 +48,9 @@ const state = {
   completionIndex: 0,
   currentCommand: null,
 };
+
+// Canvas view instance
+const canvasView = new CanvasView();
 
 // Sub-tabs configuration for each main tab
 const subTabConfig = {
@@ -241,7 +253,7 @@ async function init() {
 
 async function loadData() {
   try {
-    const [messages, cards, collections, schemas, tags, agents, schedulerSources, schedulerQueries, schedulerOutputs, schedulerCleanups, schedulerLogs, integrations, subscriptions, organizations] = await Promise.all([
+    const [messages, cards, collections, schemas, tags, agents, schedulerSources, schedulerQueries, schedulerOutputs, schedulerCleanups, schedulerLogs, integrations, subscriptions, organizations, branches, nodes] = await Promise.all([
       fetch('/api/messages').then(r => r.json()),
       fetch('/api/cards').then(r => r.json()),
       fetch('/api/collections').then(r => r.json()),
@@ -256,6 +268,8 @@ async function loadData() {
       fetch('/api/integrations').then(r => r.json()),
       fetch('/api/subscriptions').then(r => r.json()),
       fetch('/api/organizations').then(r => r.json()),
+      fetch('/api/branches').then(r => r.json()),
+      fetch('/api/nodes').then(r => r.json()),
     ]);
     
     state.messages = messages;
@@ -272,6 +286,14 @@ async function loadData() {
     state.integrations = integrations;
     state.subscriptions = subscriptions;
     state.organizations = organizations;
+    state.branches = branches;
+    state.nodes = nodes;
+    
+    // Set initial branch (trunk)
+    if (branches.length > 0) {
+      const trunk = branches.find(b => b.branch_type === 'trunk');
+      state.currentBranchId = trunk ? trunk.id : branches[0].id;
+    }
   } catch (error) {
     console.error('Failed to load data:', error);
   }
@@ -291,6 +313,12 @@ function setupEventListeners() {
   
   // Model settings
   elements.modelSettingsBtn.addEventListener('click', () => openModal('model-settings'));
+  
+  // Canvas toggle
+  const canvasToggleBtn = document.getElementById('canvas-toggle-btn');
+  if (canvasToggleBtn) {
+    canvasToggleBtn.addEventListener('click', toggleViewMode);
+  }
   
   // Active context
   elements.activeContextBtn.addEventListener('click', () => openModal('active-context'));
@@ -1069,10 +1097,178 @@ function renderOrganizationsContent() {
 }
 
 // =============================================================================
+// CANVAS/LINEAR VIEW MODE
+// =============================================================================
+
+function toggleViewMode() {
+  state.viewMode = state.viewMode === 'linear' ? 'canvas' : 'linear';
+  renderConversationView();
+}
+
+function renderConversationView() {
+  if (state.viewMode === 'canvas') {
+    renderCanvasView();
+  } else {
+    renderLinearView();
+  }
+}
+
+function renderCanvasView() {
+  if (state.branches.length === 0 || state.nodes.length === 0) {
+    elements.messagesContainer.innerHTML = '<div class="empty-state"><p>No conversation data available</p></div>';
+    return;
+  }
+  
+  // Render canvas
+  const canvasHTML = canvasView.render(state.branches, state.nodes);
+  elements.messagesContainer.innerHTML = canvasHTML;
+  
+  // Attach event listeners
+  canvasView.attachEventListeners(elements.messagesContainer, {
+    onZoomChange: (zoom) => {
+      const grid = document.getElementById('canvas-grid');
+      const zoomLevel = document.querySelector('.zoom-level');
+      if (grid) grid.style.transform = `scale(${zoom})`;
+      if (zoomLevel) zoomLevel.textContent = `${Math.round(zoom * 100)}%`;
+    },
+    onNodeClick: (nodeId, branchId) => {
+      // Switch to linear mode with this branch
+      state.viewMode = 'linear';
+      state.currentBranchId = branchId;
+      renderConversationView();
+    },
+    onBranchHeaderClick: (branchId) => {
+      // Switch to linear mode with this branch
+      state.viewMode = 'linear';
+      state.currentBranchId = branchId;
+      renderConversationView();
+    }
+  });
+}
+
+function renderLinearView() {
+  // Add branch navigation if we have branches
+  let branchNavHTML = '';
+  if (state.branches.length > 1 && state.currentBranchId) {
+    branchNavHTML = renderBranchNavigation(state.branches, state.currentBranchId);
+  }
+  
+  // Get nodes for current branch
+  const branchNodes = state.currentBranchId 
+    ? state.nodes.filter(n => n.branch_id === state.currentBranchId)
+    : state.nodes;
+  
+  // Render nodes
+  const nodesHTML = branchNodes.map(node => renderLinearNode(node)).join('');
+  
+  elements.messagesContainer.innerHTML = branchNavHTML + nodesHTML;
+  
+  // Attach branch navigation handlers
+  attachBranchNavHandlers();
+  
+  elements.messagesContainer.scrollTop = elements.messagesContainer.scrollHeight;
+}
+
+function renderLinearNode(node) {
+  return `
+    <article class="message-node">
+      <header class="message-header">
+        <span class="message-avatar">👤</span>
+        <span class="message-role">You</span>
+        <time class="message-time">${new Date(node.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</time>
+      </header>
+      <div class="message-content">
+        <p>${escapeHtml(node.user_prompt)}</p>
+      </div>
+    </article>
+    <article class="message-node assistant">
+      <header class="message-header">
+        <span class="message-avatar">●</span>
+        <span class="message-role">Assistant</span>
+        <time class="message-time">${new Date(node.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</time>
+        <span style="margin-left:auto;font-size:var(--text-xs);color:var(--color-ink-lighter);">${node.model}</span>
+      </header>
+      <div class="message-content">
+        ${formatNodeResponse(node.llm_response)}
+      </div>
+      <div class="message-actions">
+        <button class="message-action-btn">Save as Card</button>
+        <button class="message-action-btn">Copy</button>
+      </div>
+    </article>
+  `;
+}
+
+function formatNodeResponse(text) {
+  if (!text) return '';
+  
+  // Split into paragraphs
+  const paragraphs = text.split('\n\n');
+  return paragraphs.map(para => {
+    // Check if it's a header
+    if (para.startsWith('## ')) {
+      return `<h3 style="font-weight:var(--weight-semibold);margin:var(--space-3) 0 var(--space-2) 0;">${escapeHtml(para.substring(3))}</h3>`;
+    }
+    // Check if it's a list item
+    if (para.startsWith('- ')) {
+      const items = para.split('\n').filter(line => line.startsWith('- '));
+      return `<ul style="margin:var(--space-2) 0;padding-left:var(--space-6);">${items.map(item => `<li>${escapeHtml(item.substring(2))}</li>`).join('')}</ul>`;
+    }
+    // Check if it's code block
+    if (para.startsWith('```')) {
+      return `<pre style="background:var(--color-paper-cool);padding:var(--space-3);border-radius:var(--radius-md);overflow-x:auto;margin:var(--space-2) 0;"><code>${escapeHtml(para.replace(/```\w*\n?/g, ''))}</code></pre>`;
+    }
+    // Regular paragraph
+    return `<p>${escapeHtml(para).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')}</p>`;
+  }).join('');
+}
+
+function attachBranchNavHandlers() {
+  const prevBtn = document.getElementById('branch-prev-btn');
+  const nextBtn = document.getElementById('branch-next-btn');
+  const dots = document.querySelectorAll('.branch-dot');
+  
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      const currentIndex = state.branches.findIndex(b => b.id === state.currentBranchId);
+      if (currentIndex > 0) {
+        state.currentBranchId = state.branches[currentIndex - 1].id;
+        renderConversationView();
+      }
+    });
+  }
+  
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      const currentIndex = state.branches.findIndex(b => b.id === state.currentBranchId);
+      if (currentIndex < state.branches.length - 1) {
+        state.currentBranchId = state.branches[currentIndex + 1].id;
+        renderConversationView();
+      }
+    });
+  }
+  
+  dots.forEach(dot => {
+    dot.addEventListener('click', () => {
+      const index = parseInt(dot.dataset.branchIndex);
+      state.currentBranchId = state.branches[index].id;
+      renderConversationView();
+    });
+  });
+}
+
+// =============================================================================
 // MESSAGES RENDERING
 // =============================================================================
 
 function renderMessages() {
+  // Use new conversation view renderer if we have branches
+  if (state.branches.length > 0 && state.nodes.length > 0) {
+    renderConversationView();
+    return;
+  }
+  
+  // Fall back to old message rendering
   elements.messagesContainer.innerHTML = state.messages.map(msg => {
     const time = new Date(msg.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     const avatar = msg.role === 'user' ? '👤' : '●';

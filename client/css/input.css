@@ -96,7 +96,7 @@
   align-items: flex-end;
   gap: var(--space-2);
   background: var(--color-paper-cool);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-full);
   padding: var(--space-3);
   transition: box-shadow var(--transition-fast);
 }
@@ -163,7 +163,7 @@
   height: 36px;
   background: var(--color-ink);
   color: var(--color-paper);
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-full);
   transition: all var(--transition-fast);
 }
 

@@ -1,7 +1,7 @@
 // Symposium UI Mockup - Deno Server
 // Run with: deno run --allow-net --allow-read server.ts
 
-const port = 3000;
+const port = parseInt(Deno.env.get("PORT") || "3000");
 
 // MIME types
 const mimeTypes: Record<string, string> = {
